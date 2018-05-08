@@ -1,0 +1,28 @@
+
+build:
+	mkdir bin
+	javac -d bin src/nodes/*.java
+
+run:
+	mkdir output
+	java -cp bin nodes.Test tests/01-hello_world.ac
+	java -cp bin nodes.Test tests/02-hello_world_nasty.ac
+	java -cp bin nodes.Test tests/03-declaring.ac
+	java -cp bin nodes.Test tests/04-assignment.ac
+	java -cp bin nodes.Test tests/05-if.ac
+	java -cp bin nodes.Test tests/06-nested_if.ac
+	java -cp bin nodes.Test tests/07-nested_while.ac
+	java -cp bin nodes.Test tests/08-simple_math.ac
+	java -cp bin nodes.Test tests/09-primes.ac
+	java -cp bin nodes.Test tests/10-complete_math.ac
+	cp *.out *.ast output/
+
+
+doc:
+	mkdir doc
+	find -name "*.java" > java_sources
+	javadoc -version -author -d doc @java_sources
+
+clean:
+	rm -rf bin
+	rm -rf output
